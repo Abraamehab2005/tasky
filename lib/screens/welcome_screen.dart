@@ -1,0 +1,149 @@
+import 'package:flutter/material.dart';
+import 'package:tasky/core/services/preferences_manager.dart';
+import 'package:tasky/core/widgets/custom_svg_picture.dart';
+import 'package:tasky/core/widgets/custom_text_form_field.dart';
+import 'package:tasky/screens/main_screen.dart';
+
+class WelcomeScreen extends StatelessWidget {
+  WelcomeScreen({super.key});
+  final TextEditingController controller = TextEditingController();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // backgroundColor: Color(0xFF181818),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _key,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomSvgPicture.withoutColor(
+                        path: 'assets/images/Logo.svg',
+                      ),
+                      SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        "Tasky",
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 118,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Welcome To Tasky",
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                      CustomSvgPicture.withoutColor(
+                        path: 'assets/images/waving-hand.svg',
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    "Your productivity journey starts here.",
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall!
+                        .copyWith(fontSize: 16),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  CustomSvgPicture.withoutColor(
+                    path: 'assets/images/welcom.svg',
+                    hight: 200,
+                    width: 215,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 24,
+                        ),
+                        CustomTextFormField(
+                          controller: controller,
+                          hintText: 'e.g. Ebraam Ehab',
+                          title: 'Full Name',
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return "Please Enter Your Name";
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 24,
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            fixedSize:
+                                Size(MediaQuery.of(context).size.width, 40),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                100,
+                              ),
+                            ),
+                          ),
+                          onPressed: () async {
+                            if (_key.currentState?.validate() ?? false) {
+                              await PreferencesManager()
+                                  .setString("username", controller.value.text);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return MainScreen();
+                                  },
+                                ),
+                              );
+                            } else {
+                              // Todo : snakbar
+                              // ScaffoldMessenger.of(context).showSnackBar(
+                              //   SnackBar(
+                              //     elevation: 10,
+                              //     content: Text('Please Enter Your Name'),
+                              //   ),
+                              // );
+                            }
+                          },
+                          child: Text(
+                            "Let's Get Started",
+                            // style: TextStyle(
+                            //   fontWeight: FontWeight.w500,
+                            // ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 24,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
