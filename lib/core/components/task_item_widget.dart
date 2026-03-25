@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/enum/task_item_actions_enam.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
@@ -224,7 +225,7 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                       onPressed: () async {
                         if (key.currentState?.validate() ?? false) {
                           final taskJson =
-                              PreferencesManager().getString("tasks");
+                              PreferencesManager().getString(StorageKey.tasks);
                           List<dynamic> listTasks = [];
                           if (taskJson != null) {
                             listTasks = jsonDecode(taskJson);
@@ -242,7 +243,7 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                           listTasks[index] = newModel;
                           final taskEncode = jsonEncode(listTasks);
                           await PreferencesManager()
-                              .setString("tasks", taskEncode);
+                              .setString(StorageKey.tasks, taskEncode);
 
                           Navigator.of(context).pop(true); // return home screen
                         }

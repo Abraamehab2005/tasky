@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/core/components/task_list_widget.dart';
@@ -25,7 +26,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
     // setState(() { // i do not need to load remember this
     //   isLoading = true;
     // });
-    final fianlTask = PreferencesManager().getString('tasks');
+    final fianlTask = PreferencesManager().getString(StorageKey.tasks);
 
     if (fianlTask != null) {
       final taskAfterDecode = jsonDecode(fianlTask) as List<dynamic>;
@@ -45,7 +46,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
   _deleteTask(int? id) async {
     List<TaskModel> tasks = [];
     if (id == null) return;
-    final fianlTask = PreferencesManager().getString('tasks');
+    final fianlTask = PreferencesManager().getString(StorageKey.tasks);
 
     if (fianlTask != null) {
       final taskAfterDecode = jsonDecode(fianlTask) as List<dynamic>;
@@ -58,7 +59,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
         completeTasks.removeWhere((task) => task.id == id);
       });
       final updatedTasks = tasks.map((element) => element.toJson()).toList();
-      PreferencesManager().setString('tasks', jsonEncode(updatedTasks));
+      PreferencesManager().setString(StorageKey.tasks, jsonEncode(updatedTasks));
     }
   }
 
@@ -90,7 +91,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
                         completeTasks[index!].isDone = value ?? false;
                       });
 
-                      final allData = PreferencesManager().getString("tasks");
+                      final allData = PreferencesManager().getString(StorageKey.tasks);
 
                       if (allData != null) {
                         List<TaskModel> allDataList =
@@ -102,7 +103,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
                             (e) => e.id == completeTasks[index!].id);
                         allDataList[newIndex] = completeTasks[index!];
                         await PreferencesManager()
-                            .setString("tasks", jsonEncode(allDataList));
+                            .setString(StorageKey.tasks, jsonEncode(allDataList));
 
                         _loadTask();
                       }

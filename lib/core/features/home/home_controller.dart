@@ -26,7 +26,7 @@ class HomeController with ChangeNotifier {
 
   void loadTask() async {
     // isLoading = false;
-    final fianlTask = PreferencesManager().getString("tasks");
+    final fianlTask = PreferencesManager().getString(StorageKey.tasks);
     if (fianlTask != null) {
       final taskAfterDecode = jsonDecode(fianlTask) as List<dynamic>;
 
@@ -41,7 +41,7 @@ class HomeController with ChangeNotifier {
 
   void loadUserName() async {
     username = PreferencesManager().getString(StorageKey.username);
-    userImagePath = PreferencesManager().getString('user_image');
+    userImagePath = PreferencesManager().getString(StorageKey.userImage);
     notifyListeners();
   }
 
@@ -56,7 +56,7 @@ class HomeController with ChangeNotifier {
     tasks[index!].isDone = value ?? false;
     calculatePercent();
     final updatedTask = tasks.map((element) => element.toJson()).toList();
-    await PreferencesManager().setString("tasks", jsonEncode(updatedTask));
+    await PreferencesManager().setString(StorageKey.tasks, jsonEncode(updatedTask));
     notifyListeners();
   }
 
@@ -67,7 +67,7 @@ class HomeController with ChangeNotifier {
     calculatePercent();
     // todo : make shared method
     final updatedTasks = tasks.map((element) => element.toJson()).toList();
-    PreferencesManager().setString('tasks', jsonEncode(updatedTasks));
+    PreferencesManager().setString(StorageKey.tasks, jsonEncode(updatedTasks));
     notifyListeners();
   }
 }
