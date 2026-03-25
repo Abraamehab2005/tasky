@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgets/custom_svg_picture.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
@@ -106,7 +107,7 @@ class WelcomeScreen extends StatelessWidget {
                           onPressed: () async {
                             if (_key.currentState?.validate() ?? false) {
                               await PreferencesManager()
-                                  .setString("username", controller.value.text);
+                                  .setString(StorageKey.username, controller.value.text);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -127,9 +128,6 @@ class WelcomeScreen extends StatelessWidget {
                           },
                           child: Text(
                             "Let's Get Started",
-                            // style: TextStyle(
-                            //   fontWeight: FontWeight.w500,
-                            // ),
                           ),
                         ),
                         SizedBox(

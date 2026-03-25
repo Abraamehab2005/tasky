@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
 
@@ -74,7 +75,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   if (_key.currentState!.validate()) {
                     // Todo : get shared perferance
                     await PreferencesManager()
-                        .setString("username", userNameController.value.text);
+                        .setString(StorageKey.username, userNameController.value.text);
                     await PreferencesManager().setString("motivation_quote",
                         motivationQuoteController.value.text);
 
