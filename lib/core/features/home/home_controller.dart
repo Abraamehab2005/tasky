@@ -21,7 +21,7 @@ class HomeController with ChangeNotifier {
 
   void init() {
     loadTask();
-    loadUserName();
+    loadUserData();
   }
 
   void loadTask() async {
@@ -39,7 +39,7 @@ class HomeController with ChangeNotifier {
     notifyListeners();
   }
 
-  void loadUserName() async {
+  void loadUserData() async {
     username = PreferencesManager().getString(StorageKey.username);
     userImagePath = PreferencesManager().getString(StorageKey.userImage);
     notifyListeners();
