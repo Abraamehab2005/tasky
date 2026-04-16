@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/core/features/home/home_controller.dart';
+import 'package:tasky/core/features/tasks/tasks_controller.dart';
 import 'package:tasky/core/widgets/custom_svg_picture.dart';
 import 'package:tasky/core/features/add_task/add_task.screen.dart';
 import 'package:tasky/core/features/home/components/archieved_tasks_widget.dart';
@@ -31,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   );
                   if (result != null && result) {
-                    context.read<HomeController>().loadTask();
+                    context.read<TasksController>().init();
                   }
                 },
                 label: Text(

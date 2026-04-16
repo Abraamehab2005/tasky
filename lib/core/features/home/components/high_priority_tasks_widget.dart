@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/core/features/home/home_controller.dart';
+import 'package:tasky/core/features/tasks/tasks_controller.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/core/widgets/custom_check_box.dart';
 import 'package:tasky/core/widgets/custom_svg_picture.dart';
@@ -11,9 +12,9 @@ class HighPriorityTasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeController>(
+    return Consumer<TasksController>(
       builder:
-          (BuildContext context, HomeController controller, Widget? child) {
+          (BuildContext context, TasksController controller, Widget? child) {
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -51,9 +52,8 @@ class HighPriorityTasksWidget extends StatelessWidget {
                             CustomCheckBox(
                               value: element.isDone,
                               onChanged: (bool? value) {
-                                final index = controller.tasks
-                                    .indexWhere((e) => e.id == element.id);
-                                controller.doneTask(value, index);
+                               
+                                controller.doneTask(value, element.id);
                               },
                             ),
                             Expanded(
@@ -82,7 +82,7 @@ class HighPriorityTasksWidget extends StatelessWidget {
                       },
                     ),
                   );
-                  controller.loadTask();
+                  controller.init();
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),

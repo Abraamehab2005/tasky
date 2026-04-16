@@ -3,22 +3,19 @@ import 'dart:math' as math;
 
 import 'package:provider/provider.dart';
 import 'package:tasky/core/features/home/home_controller.dart';
+import 'package:tasky/core/features/tasks/tasks_controller.dart';
 
 class ArchievedTasksWidget extends StatelessWidget {
   const ArchievedTasksWidget({
     super.key,
-    //required this.totalTask,
-    // required this.totalDoneTasks,
-    // required this.percent,
+    
   });
-  // final int totalTask;
-  // final int totalDoneTasks;
-  // final double percent;
+ 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeController>(
+    return Consumer<TasksController>(
       builder:
-          (BuildContext context, HomeController controller, Widget? child) {
+          (BuildContext context, TasksController controller, Widget? child) {
         return Container(
           padding: EdgeInsets.all(16),
           width: double.infinity,
