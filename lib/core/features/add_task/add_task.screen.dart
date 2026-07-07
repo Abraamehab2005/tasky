@@ -74,13 +74,7 @@ class AddTaskScreen extends StatelessWidget {
                         onPressed: () async {
                           context.read<AddTaskController>().AddTask(context);
                         },
-                        style: ElevatedButton.styleFrom(
-                          fixedSize:
-                              Size(MediaQuery.of(context).size.width, 40),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                        ),
+                        
                         label: Text(
                           "Add Task",
                           style: TextStyle(

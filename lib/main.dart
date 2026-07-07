@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
@@ -11,7 +12,7 @@ import 'package:tasky/core/features/welcome/welcome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await ScreenUtil.ensureScreenSize();
   await PreferencesManager().init();
 
   await ThemeController.init();
@@ -32,13 +33,19 @@ class Tasky extends StatelessWidget {
       builder: (context, ThemeMode value, Widget? child) {
         return ChangeNotifierProvider<TasksController>(
           create: (_) => TasksController()..init(),
-          child: MaterialApp(
-            title: "Tasky",
-            debugShowCheckedModeBanner: false,
-            theme: lightTheme,
-            darkTheme: darkTheme,
-            themeMode: value,
-            home: username == null ? WelcomeScreen() : MainScreen(),
+          child: ScreenUtilInit(
+            designSize: Size(375, 809),
+            minTextAdapt: true,
+            builder: (ctx,_) {
+              return MaterialApp(
+                title: "Tasky",
+                debugShowCheckedModeBanner: false,
+                theme: lightTheme,
+                darkTheme: darkTheme,
+                themeMode: value,
+                home: username == null ? WelcomeScreen() : MainScreen(),
+              );
+            },
           ),
         );
       },

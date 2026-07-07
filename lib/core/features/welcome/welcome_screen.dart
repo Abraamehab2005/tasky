@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgets/custom_svg_picture.dart';
@@ -21,16 +22,18 @@ class WelcomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 8,
+                    height: AppSize.ph8,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomSvgPicture.withoutColor(
                         path: 'assets/images/Logo.svg',
+                        hight: AppSize.h42,
+                        width: AppSize.w42,
                       ),
                       SizedBox(
-                        width: 16,
+                        width: AppSize.pw16,
                       ),
                       Text(
                         "Tasky",
@@ -39,7 +42,7 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 118,
+                    height: AppSize.ph108,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -54,30 +57,30 @@ class WelcomeScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 8,
+                    height: AppSize.ph8,
                   ),
                   Text(
                     "Your productivity journey starts here.",
                     style: Theme.of(context)
                         .textTheme
                         .displaySmall!
-                        .copyWith(fontSize: 16),
+                        .copyWith(fontSize: AppSize.sp16),
                   ),
                   SizedBox(
-                    height: 24,
+                    height: AppSize.ph24,
                   ),
                   CustomSvgPicture.withoutColor(
                     path: 'assets/images/welcom.svg',
-                    hight: 200,
-                    width: 215,
+                    hight: AppSize.h200,
+                    width: AppSize.w200,
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: AppSize.pw16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 24,
+                          height: AppSize.ph24,
                         ),
                         CustomTextFormField(
                           controller: controller,
@@ -92,22 +95,13 @@ class WelcomeScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          height: 24,
+                          height: AppSize.ph24,
                         ),
                         ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize:
-                                Size(MediaQuery.of(context).size.width, 40),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                100,
-                              ),
-                            ),
-                          ),
                           onPressed: () async {
                             if (_key.currentState?.validate() ?? false) {
-                              await PreferencesManager()
-                                  .setString(StorageKey.username, controller.value.text);
+                              await PreferencesManager().setString(
+                                  StorageKey.username, controller.value.text);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
@@ -131,7 +125,7 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 24,
+                          height: AppSize.ph24,
                         ),
                       ],
                     ),

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/features/home/home_controller.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
 import 'package:tasky/core/widgets/custom_svg_picture.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       create: (BuildContext context) => HomeController(),
       child: Scaffold(
         floatingActionButton: SizedBox(
-          height: 44,
+          height: AppSize.ph44,
           child: Builder(
             builder: (BuildContext context) {
               return FloatingActionButton.extended(
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(AppSize.h16),
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(
@@ -73,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                           },
                         ),
                         SizedBox(
-                          width: 8,
+                          width: AppSize.pw8,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                               },
                             ),
                             SizedBox(
-                              height: 4,
+                              height: AppSize.ph4,
                             ),
                             Text(
                               "One task at a time.One step closer.",
@@ -102,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 16,
+                      height: AppSize.ph16,
                     ),
                     Text(
                       "Yuhuu ,Your work Is ",
@@ -118,17 +119,17 @@ class HomeScreen extends StatelessWidget {
                             path: 'assets/images/waving-hand.svg')
                       ],
                     ),
-                    SizedBox(height: 16),
+                    SizedBox(height: AppSize.ph16),
                     ArchievedTasksWidget(),
                     SizedBox(
-                      height: 8,
+                      height:AppSize.ph8,
                     ),
                     HighPriorityTasksWidget(),
                     SizedBox(
-                      height: 24,
+                      height: AppSize.ph24,
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      padding:  EdgeInsets.only(top: AppSize.ph24, bottom: AppSize.pw16),
                       child: Text(
                         "My Tasks",
                         style: Theme.of(context).textTheme.labelSmall,

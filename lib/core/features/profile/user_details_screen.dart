@@ -74,17 +74,14 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 onPressed: () async {
                   if (_key.currentState!.validate()) {
                     // Todo : get shared perferance
-                    await PreferencesManager()
-                        .setString(StorageKey.username, userNameController.value.text);
+                    await PreferencesManager().setString(
+                        StorageKey.username, userNameController.value.text);
                     await PreferencesManager().setString("motivation_quote",
                         motivationQuoteController.value.text);
 
                     Navigator.pop(context, true);
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(MediaQuery.of(context).size.width, 40),
-                ),
                 child: Text(
                   'Save Changes',
                 ),

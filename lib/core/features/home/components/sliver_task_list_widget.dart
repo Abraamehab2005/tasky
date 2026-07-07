@@ -29,10 +29,6 @@ class SliverTaskListWidget extends StatelessWidget {
                       child: Text(
                         'No Data',
                         style: Theme.of(context).textTheme.bodyLarge,
-                        //  TextStyle(
-                        //   color: const Color.fromARGB(255, 33, 5, 5),
-                        //   fontSize: 24,
-                        // ),
                       ),
                     ),
                   )
