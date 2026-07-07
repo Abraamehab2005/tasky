@@ -4,9 +4,9 @@ import 'package:tasky/core/services/preferences_manager.dart';
 
 class ThemeController {
   static final ValueNotifier<ThemeMode> themeNotifier =
-      ValueNotifier(ThemeMode.dark);
+      ValueNotifier(ThemeMode.dark); // change
   static init() {
-    bool result = PreferencesManager().getBool(StorageKey.theme) ?? true;
+    bool result = PreferencesManager().getBool(StorageKey.theme) ?? true; //change
     themeNotifier.value = result ? ThemeMode.dark : ThemeMode.light;
   }
 
