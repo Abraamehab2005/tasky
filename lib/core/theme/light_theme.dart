@@ -132,14 +132,14 @@ ThemeData lightTheme = ThemeData(
     fillColor: Color(0xFFFFFFFF),
     focusColor: Color(0xFFD1DAD6),
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSize.r16),
       borderSide: BorderSide(
         color: Colors.red,
         width: 0.5,
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSize.r16),
       borderSide: BorderSide(
         color: Color(
           0xFFD1DAD6,
@@ -148,7 +148,7 @@ ThemeData lightTheme = ThemeData(
       ),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSize.r16),
       borderSide: BorderSide(
         color: Color(
           0xFFD1DAD6,
@@ -157,7 +157,7 @@ ThemeData lightTheme = ThemeData(
       ),
     ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSize.r16),
       borderSide: BorderSide(
         color: Color(
           0xFFD1DAD6,
@@ -173,7 +173,7 @@ ThemeData lightTheme = ThemeData(
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(
-        4,
+       AppSize.r4,
       ),
     ),
   ),
@@ -204,7 +204,7 @@ ThemeData lightTheme = ThemeData(
     color: Color(0xFFF6F7F9),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(
-        16,
+        AppSize.r16,
       ),
     ),
     elevation: 2,

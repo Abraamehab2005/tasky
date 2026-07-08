@@ -43,14 +43,14 @@ class HomeScreen extends StatelessWidget {
                   Icons.add,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(AppSize.r100),
                 ),
               );
             },
           ),
         ),
         body: Padding(
-          padding: EdgeInsets.all(AppSize.h16),
+          padding: EdgeInsets.all(AppSize.pw16),
           child: CustomScrollView(
             slivers: [
               SliverToBoxAdapter(

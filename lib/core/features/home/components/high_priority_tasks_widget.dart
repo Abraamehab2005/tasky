@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/core/features/home/home_controller.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/core/widgets/custom_check_box.dart';
@@ -19,7 +19,7 @@ class HighPriorityTasksWidget extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primaryContainer,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppSize.r20),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,12 +30,12 @@ class HighPriorityTasksWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(AppSize.w16),
                       child: Text(
                         'High Priority Tasks',
                         style: TextStyle(
                           color: Color(0xFF15B86C),
-                          fontSize: 14,
+                          fontSize: AppSize.sp14,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -52,7 +52,6 @@ class HighPriorityTasksWidget extends StatelessWidget {
                             CustomCheckBox(
                               value: element.isDone,
                               onChanged: (bool? value) {
-                               
                                 controller.doneTask(value, element.id);
                               },
                             ),
@@ -85,11 +84,11 @@ class HighPriorityTasksWidget extends StatelessWidget {
                   controller.init();
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(AppSize.w16),
                   child: Container(
-                    width: 48,
-                    height: 56,
-                    padding: EdgeInsets.all(16),
+                    width: AppSize.w48,
+                    height: AppSize.h56,
+                    padding: EdgeInsets.all(AppSize.pw16),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
@@ -101,8 +100,8 @@ class HighPriorityTasksWidget extends StatelessWidget {
                     ),
                     child: CustomSvgPicture(
                       path: 'assets/images/arrow_up_right.svg',
-                      width: 24,
-                      hight: 24,
+                      width: AppSize.w24,
+                      hight: AppSize.h24,
                     ),
                   ),
                 ),

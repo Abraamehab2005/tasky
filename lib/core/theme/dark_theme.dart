@@ -127,7 +127,7 @@ ThemeData darkTheme = ThemeData(
     filled: true,
     fillColor: Color(0xFF282828),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(AppSize.r16),
       borderSide: BorderSide.none,
     ),
   ),
@@ -138,7 +138,7 @@ ThemeData darkTheme = ThemeData(
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(
-        4,
+        AppSize.r4,
       ),
     ),
   ),
@@ -177,7 +177,7 @@ ThemeData darkTheme = ThemeData(
         width: 1,
       ),
       borderRadius: BorderRadius.circular(
-        16,
+        AppSize.r16,
       ),
     ),
     elevation: 2,

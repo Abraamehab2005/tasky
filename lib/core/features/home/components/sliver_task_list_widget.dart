@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/core/features/home/home_controller.dart';
 import 'package:tasky/core/components/task_item_widget.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
 
 class SliverTaskListWidget extends StatelessWidget {
@@ -33,12 +33,12 @@ class SliverTaskListWidget extends StatelessWidget {
                     ),
                   )
                 : SliverPadding(
-                    padding: EdgeInsets.only(bottom: 80),
+                    padding: EdgeInsets.only(bottom: AppSize.ph80),
                     sliver: SliverList.separated(
                       itemCount: tasksList.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding: EdgeInsets.only(top: 8),
+                          padding: EdgeInsets.only(top: 8), //8
                           child: TaskItemWidget(
                             model: tasksList[index],
                             onChanged: (bool? value) {

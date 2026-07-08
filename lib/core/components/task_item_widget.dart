@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/enum/task_item_actions_enam.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
@@ -24,12 +24,12 @@ class TaskItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: 56,
+      height: AppSize.h56,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(
-          20,
+          AppSize.r20,
         ),
         border: Border.all(
           color: ThemeController.isDark()
@@ -42,7 +42,7 @@ class TaskItemWidget extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: 8,
+            width: AppSize.pw8,
           ),
           CustomCheckBox(
             value: model.isDone,
@@ -51,7 +51,7 @@ class TaskItemWidget extends StatelessWidget {
             },
           ),
           SizedBox(
-            width: 16,
+            width: AppSize.pw16,
           ),
           Expanded(
             child: Column(
@@ -69,7 +69,7 @@ class TaskItemWidget extends StatelessWidget {
                   Text(
                     model.taskDescription,
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: AppSize.sp14,
                       overflow: TextOverflow.ellipsis,
                       color: ThemeController.isDark()
                           ? Color(0xFFC6C6C6)
@@ -169,14 +169,14 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
           builder:
               (BuildContext context, void Function(void Function()) setState) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: AppSize.pw16, vertical:AppSize.ph8),
               child: Form(
                 key: key,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 30,
+                      height: AppSize.ph30,
                     ),
                     CustomTextFormField(
                         title: 'Task Name',
@@ -190,7 +190,7 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                           }
                         }),
                     SizedBox(
-                      height: 20,
+                      height: AppSize.ph20,
                     ),
                     CustomTextFormField(
                       title: 'Task Description',
@@ -200,7 +200,7 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                       maxLines: 5,
                     ),
                     SizedBox(
-                      height: 20,
+                      height: AppSize.ph20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -252,14 +252,14 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                         fixedSize: Size(MediaQuery.of(context).size.width, 40),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
-                            100,
+                            AppSize.r100,
                           ),
                         ),
                       ),
                       label: Text(
                         "Edit Task",
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: AppSize.sp14,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
