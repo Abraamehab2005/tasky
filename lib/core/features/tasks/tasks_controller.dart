@@ -48,42 +48,6 @@ class TasksController extends ChangeNotifier {
     PreferencesManager().setString(StorageKey.tasks, jsonEncode(updatedTask));
     notifyListeners();
   }
-
-  // void doneTodoTask(bool? value, int? index) async {
-  //   if (index == null) return;
-  //   todoTasks[index].isDone = value ?? false;
-  //   calculatePercent();
-  //   final int newIndex = tasks.indexWhere((e) => e.id == todoTasks[index].id);
-  //   tasks[newIndex] = todoTasks[index];
-
-  //   await PreferencesManager().setString(StorageKey.tasks, jsonEncode(tasks));
-
-  //   _loadTasks();
-  // }
-
-  // void doneCompleteTask(bool? value, int? index) async {
-  //   if (index == null) return;
-  //   completeTasks[index].isDone = value ?? false;
-
-  //   final newIndex = tasks.indexWhere((e) => e.id == completeTasks[index].id);
-  //   tasks[newIndex] = completeTasks[index];
-
-  //   await PreferencesManager().setString(StorageKey.tasks, jsonEncode(tasks));
-  //   _loadTasks();
-  // }
-
-  // void doneHighPriorityTask(bool? value, int? index) async {
-  //   if (index == null) return;
-  //   highPriorityTasks[index].isDone = value ?? false;
-
-  //   final newIndex =
-  //       tasks.indexWhere((e) => e.id == highPriorityTasks[index].id);
-  //   tasks[newIndex] = highPriorityTasks[index];
-
-  //   await PreferencesManager().setString(StorageKey.tasks, jsonEncode(tasks));
-  //   _loadTasks();
-  // }
-
   deleteTask(int? id) async {
     if (id == null) return;
     tasks.removeWhere((e) => e.id == id);

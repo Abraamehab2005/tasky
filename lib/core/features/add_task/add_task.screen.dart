@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/features/add_task/add_task_controller.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
 
@@ -13,7 +14,7 @@ class AddTaskScreen extends StatelessWidget {
       builder: (context, _) {
         final controller = context.read<AddTaskController>();
         return Scaffold(
-          resizeToAvoidBottomInset: true, 
+          resizeToAvoidBottomInset: true,
           appBar: AppBar(
             title: Text(
               "New Task",
@@ -21,9 +22,10 @@ class AddTaskScreen extends StatelessWidget {
             ),
           ),
           body: SafeArea(
-            child: SingleChildScrollView( 
+            child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: EdgeInsets.symmetric(
+                    horizontal: AppSize.pw16, vertical: AppSize.ph8),
                 child: Form(
                   key: controller.key,
                   child: Column(
@@ -40,7 +42,7 @@ class AddTaskScreen extends StatelessWidget {
                               return null;
                             }
                           }),
-                      SizedBox(height: 20),
+                      SizedBox(height: AppSize.ph20),
                       CustomTextFormField(
                         title: 'Task Description',
                         controller: controller.taskDescriptionController,
@@ -48,7 +50,7 @@ class AddTaskScreen extends StatelessWidget {
                             "Finish onboarding UI and hand off to\n devs by Thursday.",
                         maxLines: 5,
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: AppSize.ph20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -69,16 +71,15 @@ class AddTaskScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20), 
+                      SizedBox(height: AppSize.ph20),
                       ElevatedButton.icon(
                         onPressed: () async {
                           context.read<AddTaskController>().AddTask(context);
                         },
-                        
                         label: Text(
                           "Add Task",
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: AppSize.sp14,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -87,7 +88,7 @@ class AddTaskScreen extends StatelessWidget {
                           color: Color(0xFFFFFCFC),
                         ),
                       ),
-                      SizedBox(height: 16), 
+                      SizedBox(height: AppSize.ph16),
                     ],
                   ),
                 ),

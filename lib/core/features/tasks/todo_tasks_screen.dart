@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/core/constants/app_size.dart';
 
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
 
@@ -16,13 +17,13 @@ class TodoTasksScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: EdgeInsets.all(AppSize.pw18),
           child: Text("To Do Tasks",
               style: Theme.of(context).textTheme.labelSmall),
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(AppSize.pw16),
             child: controller.isLoading
                 ? Center(
                     child: CircularProgressIndicator(
@@ -30,11 +31,13 @@ class TodoTasksScreen extends StatelessWidget {
                     ),
                   )
                 : Consumer<TasksController>(
-                    builder: (BuildContext context, valueController, Widget? child) {
+                    builder:
+                        (BuildContext context, valueController, Widget? child) {
                       return TaskListWidget(
                         tasks: valueController.todoTasks,
                         onTap: (bool? value, int? index) async {
-                          controller.doneTask(value, valueController.todoTasks[index!].id);
+                          controller.doneTask(
+                              value, valueController.todoTasks[index!].id);
                         },
                         emptyMessage: 'No Task Found',
                         onDelete: (int? id) {

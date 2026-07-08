@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
@@ -36,7 +37,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         title: Text('User Details'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(AppSize.pw16),
         child: Form(
           key: _key,
           child: Column(
@@ -54,7 +55,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                 },
               ),
               SizedBox(
-                height: 20,
+                height: AppSize.ph20,
               ),
               CustomTextFormField(
                 controller: motivationQuoteController,

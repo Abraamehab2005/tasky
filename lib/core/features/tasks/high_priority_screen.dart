@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/core/constants/app_size.dart';
 
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
 
@@ -18,7 +19,7 @@ class HighPriorityScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(AppSize.pw16),
         child: controller.isLoading
             ? Center(
                 child: CircularProgressIndicator(
@@ -26,11 +27,13 @@ class HighPriorityScreen extends StatelessWidget {
                 ),
               )
             : Consumer<TasksController>(
-                builder: (BuildContext context, valueController, Widget? child) {
+                builder:
+                    (BuildContext context, valueController, Widget? child) {
                   return TaskListWidget(
                     tasks: valueController.highPriorityTasks,
                     onTap: (bool? value, int? index) async {
-                      controller.doneTask(value, valueController.highPriorityTasks[index!].id);
+                      controller.doneTask(
+                          value, valueController.highPriorityTasks[index!].id);
                     },
                     emptyMessage: 'No Task Found',
                     onDelete: (int? id) {
