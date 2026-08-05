@@ -19,11 +19,8 @@ class AddTaskController extends ChangeNotifier {
 
   void AddTask(BuildContext context) async {
     if (key.currentState?.validate() ?? false) {
-      final taskJson = PreferencesManager().getString(StorageKey.tasks);
-      List<dynamic> listTasks = [];
-      if (taskJson != null) {
-        listTasks = jsonDecode(taskJson);
-      }
+     List<dynamic> listTasks = await FileStorageManager().loadTasks();
+
       TaskModel model = TaskModel(
         id: listTasks.length + 1,
         taskName: taskNameController.text,
@@ -35,8 +32,7 @@ class AddTaskController extends ChangeNotifier {
 
       await FileStorageManager().saveTasks(listTasks);
 
-      final taskEncode = jsonEncode(listTasks);
-      await PreferencesManager().setString(StorageKey.tasks, taskEncode);
+
       Navigator.of(context).pop(true); // return home screen
     }
   }

@@ -15,7 +15,6 @@ class FileStorageManager {
   init() async{
     _appDocumentsDirectory = await getApplicationDocumentsDirectory();
      _tasksFile = File('${_appDocumentsDirectory.path}/tasks.json');
-     print(_tasksFile);
   }
 
   saveTasks(List<dynamic> List) async{
@@ -27,5 +26,10 @@ class FileStorageManager {
     if(!await _tasksFile.exists()) return [];
    final tasksJson = await _tasksFile.readAsString();
     return  jsonDecode(tasksJson) as List<dynamic>;
+  }
+
+  clear() async{
+    if(!await _tasksFile.exists()) return;
+    await _tasksFile.delete();
   }
 }

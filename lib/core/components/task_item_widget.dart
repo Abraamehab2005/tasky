@@ -226,7 +226,6 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                       onPressed: () async {
                         if (key.currentState?.validate() ?? false) {
                           List<dynamic> listTasks =  await FileStorageManager().loadTasks();
-
                           TaskModel newModel = TaskModel(
                             id: model.id,
                             taskName: taskNameController.text,
@@ -238,9 +237,7 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                               listTasks.firstWhere((e) => e['id'] == model.id);
                           final int index = listTasks.indexOf(item);
                           listTasks[index] = newModel;
-                          final taskEncode = jsonEncode(listTasks);
-                          await PreferencesManager()
-                              .setString(StorageKey.tasks, taskEncode);
+                        await FileStorageManager().saveTasks(listTasks);
 
                           Navigator.of(context).pop(true); // return home screen
                         }

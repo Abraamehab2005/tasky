@@ -71,4 +71,8 @@ class TasksController extends ChangeNotifier {
         tasks.where((element) => element.isHighyPriority).toList();
     highPriorityTasks = highPriorityTasks.reversed.toList();
   }
+
+  clearTasks() {
+     _loadTasks();
+  }
 }
