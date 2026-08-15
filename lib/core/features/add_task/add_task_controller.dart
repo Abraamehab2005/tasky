@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:tasky/core/constants/storage_key.dart';
-import 'package:tasky/core/services/file_storage_manager.dart';
-import 'package:tasky/core/services/preferences_manager.dart';
+import 'package:tasky/core/services/hive_storage_manager.dart';
+
 import 'package:tasky/models/task_model.dart';
 
 class AddTaskController extends ChangeNotifier {
@@ -17,9 +14,9 @@ class AddTaskController extends ChangeNotifier {
 
   final GlobalKey<FormState> key = GlobalKey<FormState>();
 
-  void AddTask(BuildContext context) async {
+  void addTask(BuildContext context) async {
     if (key.currentState?.validate() ?? false) {
-     List<dynamic> listTasks = await FileStorageManager().loadTasks();
+      List<TaskModel> listTasks = HiveStorageManager().loadTasks();
 
       TaskModel model = TaskModel(
         id: listTasks.length + 1,
@@ -28,10 +25,9 @@ class AddTaskController extends ChangeNotifier {
         isHighyPriority: isHighPriorty,
       );
 
-      listTasks.add(model.toJson());
+      listTasks.add(model);
 
-      await FileStorageManager().saveTasks(listTasks);
-
+      await HiveStorageManager().saveTasks(listTasks);
 
       Navigator.of(context).pop(true); // return home screen
     }

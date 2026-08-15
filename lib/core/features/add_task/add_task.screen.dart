@@ -74,7 +74,7 @@ class AddTaskScreen extends StatelessWidget {
                       SizedBox(height: AppSize.ph20),
                       ElevatedButton.icon(
                         onPressed: () async {
-                          context.read<AddTaskController>().AddTask(context);
+                          context.read<AddTaskController>().addTask(context);
                         },
                         label: Text(
                           "Add Task",

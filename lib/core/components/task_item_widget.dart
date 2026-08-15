@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tasky/core/constants/app_size.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/enum/task_item_actions_enam.dart';
-import 'package:tasky/core/services/file_storage_manager.dart';
+import 'package:tasky/core/services/hive_storage_manager.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/core/widgets/custom_check_box.dart';
@@ -170,7 +170,8 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
           builder:
               (BuildContext context, void Function(void Function()) setState) {
             return Padding(
-              padding: EdgeInsets.symmetric(horizontal: AppSize.pw16, vertical:AppSize.ph8),
+              padding: EdgeInsets.symmetric(
+                  horizontal: AppSize.pw16, vertical: AppSize.ph8),
               child: Form(
                 key: key,
                 child: Column(
@@ -225,7 +226,8 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                     ElevatedButton.icon(
                       onPressed: () async {
                         if (key.currentState?.validate() ?? false) {
-                          List<dynamic> listTasks =  await FileStorageManager().loadTasks();
+                          List<TaskModel> listTasks =
+                               HiveStorageManager().loadTasks();
                           TaskModel newModel = TaskModel(
                             id: model.id,
                             taskName: taskNameController.text,
@@ -234,10 +236,10 @@ Future<bool?> _showButtonSheet(context, TaskModel model) {
                             isDone: model.isDone,
                           );
                           final item =
-                              listTasks.firstWhere((e) => e['id'] == model.id);
+                              listTasks.firstWhere((e) => e.id == model.id);
                           final int index = listTasks.indexOf(item);
                           listTasks[index] = newModel;
-                        await FileStorageManager().saveTasks(listTasks);
+                          await HiveStorageManager().saveTasks(listTasks);
 
                           Navigator.of(context).pop(true); // return home screen
                         }

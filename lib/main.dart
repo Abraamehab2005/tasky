@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
-import 'package:tasky/core/services/file_storage_manager.dart';
+import 'package:tasky/core/services/hive_storage_manager.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/theme/dark_theme.dart';
 import 'package:tasky/core/theme/light_theme.dart';
@@ -18,7 +18,7 @@ void main() async {
   await PreferencesManager().init();
 
   await ThemeController.init();
-  await FileStorageManager().init();
+  await HiveStorageManager().init();
   String? username = PreferencesManager().getString(StorageKey.username);
   runApp(Tasky(
     username: username,
@@ -38,7 +38,7 @@ class Tasky extends StatelessWidget {
           child: ScreenUtilInit(
             designSize: Size(375, 809),
             minTextAdapt: true,
-            builder: (ctx,_) {
+            builder: (ctx, _) {
               return MaterialApp(
                 title: "Tasky",
                 debugShowCheckedModeBanner: false,
