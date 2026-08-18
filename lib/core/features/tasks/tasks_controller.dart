@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:tasky/core/services/hive_storage_manager.dart';
 import 'package:tasky/models/task_model.dart';
@@ -19,7 +18,7 @@ class TasksController extends ChangeNotifier {
 
   void _loadTasks() async {
     // isLoading = false;
-    tasks =  HiveStorageManager().loadTasks();
+    tasks = HiveStorageManager().loadTasks();
     _loadData();
     _calculatePercent();
 

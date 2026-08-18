@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/features/tasks/tasks_controller.dart';
